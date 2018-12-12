@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const convertToCSV = require('./helperFunctions/convertToCSV.js').convertToCSV
+const convertToHTML = require('./helperFunctions/convertToHTML.js').convertToHTML
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -14,7 +15,9 @@ app.use(bodyParser.urlencoded({
 
 // -------- crud -------- //
 app.post('/convert', (req, res) => {
-  res.send(convertToCSV(req.body.input));
+  let CSVified = convertToCSV(req.body.input);
+  let HTMLified = convertToHTML(CSVified);
+  res.send(HTMLified)
 });
 
 // -------- server -------- //
