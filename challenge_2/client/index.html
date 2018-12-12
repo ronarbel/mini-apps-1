@@ -5,13 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>JSON CSV Converter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-  <!-- <script src="main.js"></script> -->
 </head>
 <body>
   <h3>JSON > CSV Converter</h3>
-  <form action='/convert' method='POST'>
-    <textarea name='input' rows='8' cols='60' type='text'> Sample Entry </textarea>
+  <form action='/convert' method='POST' enctype='multipart/form-data'>
+    <input name='input' type='file'/>
     <input type='submit' value='Convert'>
   </form>
 </body>
