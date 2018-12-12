@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const convertToCSV = require('./server/convertToCSV')
-// const convertToCSV = require('./convertToCSV.js').convertToCSV;
+const convertToCSV = require('./helperFunctions/convertToCSV.js').convertToCSV
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -15,8 +14,7 @@ app.use(bodyParser.urlencoded({
 
 // -------- crud -------- //
 app.post('/convert', (req, res) => {
-  // convertToCSV(req.body.input);
-  convertToCSV('SUCCESSFUL EXPORT')
+  convertToCSV(req.body.input);
 });
 
 // -------- server -------- //
