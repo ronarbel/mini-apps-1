@@ -1,11 +1,13 @@
+const express = require('express');
+const expressFileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const expressFileUpload = require('express-fileupload');
+const fs = require('fs');
+
 const convertToCSV = require('./helperFunctions/convertToCSV.js').convertToCSV
 const convertToHTML = require('./helperFunctions/convertToHTML.js').convertToHTML
-const express = require('express');
+
 const app = express();
-const port = 3000;
 
 // -------- middleware -------- //
 app.use(morgan('short'));
@@ -20,9 +22,17 @@ app.post('/convert', (req, res) => {
   let input = req.files.input.data.toString();
   let CSVified = convertToCSV(input);
   let HTMLified = convertToHTML(CSVified);
+  fs.writeFile('./results/result.csv', CSVified, function(err, data){
+    if (err) console.log(err);
+    console.log("Successfully Written to File.");
+  });
   res.send(HTMLified);
+});
+app.get('/download', function(req, res){
+  var file = __dirname + '/results/result.csv';
+  res.download(file); // Set disposition and send it.
 });
 
 // -------- server -------- //
 app.use(express.static('./client'));
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(3000, () => console.log(`Example app listening on port ${3000}!`));
