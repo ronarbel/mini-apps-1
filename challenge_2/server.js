@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 
 // -------- crud -------- //
 app.post('/convert', (req, res) => {
-  convertToCSV(req.body.input);
+  res.send(convertToCSV(req.body.input));
 });
 
 // -------- server -------- //
