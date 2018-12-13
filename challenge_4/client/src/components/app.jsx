@@ -10,8 +10,8 @@ class App extends React.Component {
         [null,null,null,null,null,null,null,],
         [null,null,null,null,null,null,null,],
         [null,null,null,null,null,null,null,],
-        [null,null,null,1,null,null,null,],
-        [null,null,null,3,null,null,null,],
+        [null,null,null,'red',null,null,null,],
+        [null,null,null,'blue',null,null,null,],
       ]
      }
   }
