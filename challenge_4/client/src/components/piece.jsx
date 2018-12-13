@@ -1,8 +1,7 @@
 import React from 'react';
 
 const Piece = props => {
-  let data = [props.row, props.col];
-  return (<td data={data} class={props.piece}></td>)
+  return (<td data={props.col} class={props.piece} onClick={ ()=>{ props.play(props.col) } }></td>)
 }
 
 export default Piece;
