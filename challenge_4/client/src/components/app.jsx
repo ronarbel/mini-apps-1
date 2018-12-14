@@ -60,7 +60,11 @@ class App extends React.Component {
     return (
       <div>
         <Display board={this.state.board} play={this.play} />
-        <button id="reset" onClick={this.reset}>RESET</button>
+        <br></br>
+        <div id="reset">
+          <button onClick={this.reset}>RESET</button>
+        </div>
+        
       </div>
     );
   }
