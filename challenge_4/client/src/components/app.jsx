@@ -6,6 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
+      gameOn: true,
       redTurn: true,
       board: [
         [null,null,null,null,null,null,null],
@@ -18,25 +19,50 @@ class App extends React.Component {
      }
 
      this.play = this.play.bind(this);
+     this.reset = this.reset.bind(this);
   }
 
   play(col) {
-    let board = this.state.board;
-
-    for (let i = board.length - 1; i >= 0; i--) {
-      let cell = board[i][col];
-      if (!cell) {
-        board[i][col] = this.state.redTurn ? 'red' : 'blue';
-          this.setState({redTurn: !this.state.redTurn, board: board})
-        break
+    if (this.state.gameOn) {
+      let board = this.state.board;
+  
+      for (let i = board.length - 1; i >= 0; i--) {
+        let cell = board[i][col];
+        if (!cell) {
+          board[i][col] = this.state.redTurn ? 'red' : 'blue';
+            this.setState({redTurn: !this.state.redTurn, board: board})
+          break
+        }
+      }
+  
+      if (checkWin(this.state.board)) {
+        this.setState({gameOn: false})
       }
     }
+  }
 
-    console.log(checkWin());
+  reset() {
+    this.setState({
+      gameOn: true,
+      redTurn: true,
+      board: [
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+      ]
+    })
   }
 
   render() { 
-    return (<Display board={this.state.board} play={this.play}/>);
+    return (
+      <div>
+        <Display board={this.state.board} play={this.play} />
+        <button id="reset" onClick={this.reset}>RESET</button>
+      </div>
+    );
   }
 }
  

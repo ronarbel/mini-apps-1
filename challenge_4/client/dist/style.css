@@ -13,14 +13,20 @@ td {
   height: 20px;
   width: 20px;
   border: solid;
-  border-width: 3px;
+  border-width: 5px;
   border-radius: 100px;
 }
 
 .red {
   color: red;
+  background-color: red;
 }
 
 .blue {
   color: blue;
+  background-color: blue;
+}
+
+#reset {
+  margin: auto;
 }
